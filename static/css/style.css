@@ -378,6 +378,103 @@ section {
 .avatar-corner.br { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
 
 /* ══════════════════════════════════════
+   EXPERIENCE
+══════════════════════════════════════ */
+#experience { background: var(--bg); }
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience-item {
+  display: flex;
+  gap: 2rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: border-color 0.3s;
+}
+
+.experience-item:hover {
+  border-color: var(--accent);
+}
+
+.exp-logo-box {
+  width: 64px;
+  height: 64px;
+  background: #fff;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.exp-logo-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.exp-content {
+  flex: 1;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.exp-company {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.exp-period {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.exp-desc {
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .experience-item { flex-direction: column; gap: 1.5rem; padding: 1.5rem; }
+  .exp-header { flex-direction: column; gap: 0.5rem; }
+  .exp-period { order: -1; align-self: flex-start; }
+}
+
+/* ══════════════════════════════════════
    TECHNOLOGIES
 ══════════════════════════════════════ */
 #technologies { background: var(--bg); }

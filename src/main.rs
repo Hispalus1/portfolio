@@ -29,6 +29,15 @@ struct Project {
     thumb: &'static str,
 }
 
+#[derive(Serialize)]
+struct Experience {
+    company: &'static str,
+    role: &'static str,
+    period: &'static str,
+    desc: &'static str,
+    logo: &'static str,
+}
+
 #[get("/")]
 fn index() -> Template {
     let stats = vec![
@@ -48,6 +57,23 @@ fn index() -> Template {
         Tech { icon: "🧩", name: "PLD / FPGA",         level: 60 },
         Tech { icon: "🐍", name: "Python",             level: 85 },
         Tech { icon: "🐳", name: "Docker",             level: 65 },
+    ];
+
+    let experiences = vec![
+        Experience {
+            company: "Ostravská univerzita",
+            role: "Vývojář vestavěných systémů & FPGA",
+            period: "Srp 2024 — Říj 2025",
+            desc: "Vývoj řídicího softwaru pro robotické rameno a kreslícího robota. Implementace softwarových omezení pohybu pro ochranu mechanických částí. Práce v AMD Vivado a Vitis, vývoj na FPGA/PLD a nízkoúrovňový kód v C/C++. (Částečný úvazek 12h/týden)",
+            logo: "logo.png",
+        },
+        Experience {
+            company: "Slezská univerzita",
+            role: "Stážista (Intern)",
+            period: "Zář 2023 — Dub 2024",
+            desc: "Výzkum a vývoj nízkoúrovňových algoritmů pro řízení pohybu a práce s programovatelnou logikou pod vedením odborného vyučujícího.",
+            logo: "logo2.png",
+        },
     ];
 
     let projects = vec![
@@ -70,9 +96,10 @@ fn index() -> Template {
     ];
 
     Template::render("index", context! {
-        title: "Portfolio — Hispalus",
+        title: "Portfolio — Lukáš Hrňa",
         stats,
         technologies,
+        experiences,
         projects,
     })
 }
