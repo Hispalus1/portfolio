@@ -62,7 +62,7 @@ fn index() -> Template {
     let experiences = vec![
         Experience {
             company: "Ostravská univerzita",
-            role: "Vývojář vestavěných systémů & FPGA",
+            role: "Vývojář vestavěných systémů & FPGA(Projekt Lerco)",
             period: "Srp 2024 — Říj 2025",
             desc: "Vývoj řídicího softwaru pro robotické rameno a kreslícího robota. Implementace softwarových omezení pohybu pro ochranu mechanických částí. Práce v AMD Vivado a Vitis, vývoj na FPGA/PLD a nízkoúrovňový kód v C/C++. (Částečný úvazek 12h/týden)",
             logo: "logo.png",
