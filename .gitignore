@@ -1,0 +1,21 @@
+# --- Rust ---
+/target
+**/*.rs.bk
+
+# --- Environment ---
+.env
+.env.*
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+
+# --- Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Rocket ---
+# If you store secrets in Rocket.toml, uncomment the next line
+# Rocket.toml

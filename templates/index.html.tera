@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <meta name="description" content="Personal developer portfolio — projects, skills and contact." />
+
+  <!-- Bootstrap 5 (layout/grid/utilities only) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Custom styles (overrides Bootstrap where needed) -->
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav class="navbar">
+  <a class="navbar-brand" href="#hero">HRN<span>.</span>dev</a>
+
+  <button class="navbar-toggler" id="navToggler" aria-label="Toggle menu">☰</button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">O mě</a></li>
+    <li><a href="#technologies">Technologie</a></li>
+    <li><a href="#projects">Projekty</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-label">Dostupný pro projekty</p>
+
+      <h1 class="hero-title">
+        Lukáš<br>
+        <span class="accent">Hrňa.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Programuji blízko hardwaru — mikrokontroléry, sítě, PLD a systémový kód.
+        Baví mě věci, kde každý bit má cenu.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">Zobrazit projekty</a>
+        <a href="#contact" class="btn-ghost">Kontaktovat mě</a>
+      </div>
+
+      <div class="hero-stats">
+        {% for s in stats %}
+        <div class="stat-item">
+          <div class="stat-num">{{ s.value }}</div>
+          <div class="stat-label">{{ s.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     O MĚ
+══════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Image side -->
+      <!-- Foto: nahraď soubor static/img/avatar.jpg svou fotkou (stejný název) -->
+      <div class="about-image-block fade-up">
+        <img
+          src="/static/img/avatar.jpg"
+          alt="Lukáš Hrna"
+          style="width:100%;max-width:360px;border-radius:4px;border:1px solid var(--border);display:block;"
+        />
+      </div>
+
+      <!-- Text side -->
+      <div class="about-text fade-up">
+        <div class="section-header">
+          <p class="section-tag">01 — O mně</p>
+          <h2 class="section-title">
+            Hardware blízko,<br>
+            <span class="dim">abstrakce</span> pryč.
+          </h2>
+        </div>
+
+        <p>
+          Zajímám se o <strong>nízkoúrovňové programování</strong> — od assembleru a C přes
+          mikrokontroléry až po programovatelnou logiku (PLD/FPGA). Baví mě rozumět tomu,
+          co se děje pod kapotou.
+        </p>
+        <p>
+          Věnuji se také <strong>počítačovým sítím</strong> — konfigurace Cisco zařízení,
+          síťové protokoly a architektura. Systémy, kde záleží na každém paketu.
+        </p>
+        <p>
+          V poslední době mě fascinuje <strong>Rust</strong> jako jazyk, který přináší
+          bezpečnost paměti bez garbage collectoru — ideální pro embedded a systémový kód.
+        </p>
+
+        <div class="mt-4">
+          <a href="https://github.com/Hispalus1" target="_blank" rel="noopener" class="btn-ghost">
+            GitHub profil →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TECHNOLOGIE
+══════════════════════════════════════════ -->
+<section id="technologies">
+  <div class="container">
+    <div class="section-header text-center fade-up">
+      <p class="section-tag">02 — Technologie</p>
+      <h2 class="section-title">Čím pracuji</h2>
+    </div>
+
+    <div class="tech-grid">
+
+      {% for t in technologies %}
+      <div class="tech-card fade-up">
+        <div class="tech-icon">{{ t.icon }}</div>
+        <div class="tech-name">{{ t.name }}</div>
+        <div class="tech-level"><div class="tech-level-fill" style="width:{{ t.level }}%"></div></div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     UKÁZKOVÉ PROJEKTY
+══════════════════════════════════════════ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">03 — Projekty</p>
+      <h2 class="section-title">
+        Vybrané práce<br>
+        <span class="dim">&amp; experimenty</span>
+      </h2>
+    </div>
+
+    <div class="projects-grid">
+
+      {% for p in projects %}
+      <div class="project-card fade-up">
+        <div class="project-thumb">
+          {% if p.thumb %}
+          <img src="/static/img/{{ p.thumb }}" alt="{{ p.title }}">
+          {% else %}
+          <div class="project-thumb-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+            Přidat screenshot
+          </div>
+          {% endif %}
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            {% for tag in p.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+          </div>
+          <h3 class="project-title">{{ p.title }}</h3>
+          <p class="project-desc">{{ p.desc }}</p>
+          <div class="project-links">
+            <a href="{{ p.github }}" target="_blank" class="project-link">GitHub →</a>
+            {% if p.demo %}<a href="{{ p.demo }}" target="_blank" class="project-link">Demo →</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div><!-- /projects-grid -->
+
+    <div class="text-center mt-5 fade-up">
+      <a href="https://github.com/Hispalus1" target="_blank" rel="noopener" class="btn-ghost">
+        Více na GitHubu →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     KONTAKTNÍ FORMULÁŘ
+══════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">04 — Kontakt</p>
+      <h2 class="section-title">
+        Máte projekt?<br>
+        <span class="dim">Pojďme si promluvit.</span>
+      </h2>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- Left: info -->
+      <div class="fade-up">
+        <p style="color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:2rem;">
+          Hledáte spolehlivého vývojáře pro váš projekt? Neváhejte mě kontaktovat —
+          odpovídám obvykle do 24 hodin.
+        </p>
+
+        <a class="contact-info-item" href="https://github.com/Hispalus1" target="_blank" rel="noopener">
+          <div class="icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.09.68-.22.68-.49v-1.71c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 7.43c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.59.69.49A10.27 10.27 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+            </svg>
+          </div>
+          github.com/Hispalus1
+        </a>
+
+        <a class="contact-info-item" href="mailto:luki.hrna@seznam.cz">
+          <div class="icon-box">✉️</div>
+          luki.hrna@seznam.cz
+        </a>
+
+        <a class="github-cta" href="https://github.com/Hispalus1" target="_blank" rel="noopener">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--accent)">
+            <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.09.68-.22.68-.49v-1.71c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.1-1.5-1.1-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 7.43c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9v2.82c0 .27.18.59.69.49A10.27 10.27 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+          </svg>
+          <div class="github-cta-text">
+            <strong>Hispalus1 na GitHubu</strong>
+            <span>Podívejte se na mé open-source projekty</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Right: form -->
+      <div class="fade-up">
+        <form class="contact-form" action="/contact" method="POST">
+          <div class="form-group">
+            <label class="form-label" for="name">Jméno</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Jan Novák"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="jan@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Zpráva</label>
+            <textarea
+              id="message"
+              name="message"
+              class="form-control"
+              placeholder="Popis vašeho projektu nebo dotaz..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary w-100">
+            Odeslat zprávu →
+          </button>
+        </form>
+      </div>
+
+    </div><!-- /contact-grid -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="container d-flex flex-wrap justify-content-between align-items-center" style="gap:1rem">
+    <span>© 2026 <a href="https://github.com/Hispalus1" target="_blank">Hispalus1</a> — Postaveno s 🦀 Rocket</span>
+    <span style="font-size:.7rem;color:var(--muted)">Responsive · Bootstrap 5 · Rust/Rocket</span>
+  </div>
+</footer>
+
+
+<!-- Bootstrap JS (for any BS components if needed) -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmYfNxCW4HrN3U09jzaqS6S+yIF"
+  crossorigin="anonymous"
+></script>
+
+<!-- Custom JS -->
+<script src="/static/js/main.js"></script>
+</body>
+</html>
